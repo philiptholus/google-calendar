@@ -1,0 +1,14 @@
+{
+  "title": "Google™ Calendar",
+  "name": "igcalendar",
+  "description": "With Google™ Calendar keep track of life's important events all in one place.",
+  "id": "jid1-f2rYCbFpq2J5Yo@jetpack",
+  "license": "Mozilla Public License, version 2.0",
+  "version": "0.1.6",
+  "author": "Aurthur Polinsky",
+  "main": "./lib/background.js",
+  "url": "http://add0n.com/calendar.html",
+  "permissions": {
+    "private-browsing": true
+  }
+}

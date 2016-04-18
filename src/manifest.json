@@ -1,0 +1,47 @@
+{
+  "name": "Google™ Calendar",
+  "short_name": "igcalendar",
+  "description": "With Google™ Calendar keep track of life's important events all in one place.",
+  "author": "Aurthur Polinsky",
+  "version": "0.1.6",
+  "manifest_version": 2,
+  "permissions": [
+    "storage",
+    "tabs",
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
+  ],
+  "background": {
+    "scripts": [
+      "lib/chrome/chrome.js",
+      "lib/config.js",
+      "lib/background.js"
+    ]
+  },
+  "browser_action": {
+    "default_icon": {
+      "16": "data/icons/16.png",
+      "32": "data/icons/32.png"
+    },
+    "default_popup": "data/popup/index.html"
+  },
+
+  "content_scripts": [
+    {
+      "run_at": "document_start",
+      "all_frames": true,
+      "matches": [
+        "https://calendar.google.com/calendar/*",
+        "http://calendar.google.com/calendar/*"
+      ],
+      "js": ["data/content_script/inject.js"]
+    }
+  ],
+  "homepage_url": "http://add0n.com/calendar.html",
+  "icons": {
+    "16": "data/icons/16.png",
+    "48": "data/icons/48.png",
+    "128": "data/icons/128.png"
+  }
+}
