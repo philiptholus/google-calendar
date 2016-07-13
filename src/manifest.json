@@ -1,9 +1,9 @@
 {
-  "name": "Google™ Calendar",
+  "name": "Notifier for Google™ Calendar",
   "short_name": "igcalendar",
   "description": "With Google™ Calendar keep track of life's important events all in one place.",
   "author": "Aurthur Polinsky",
-  "version": "0.1.6",
+  "version": "0.1.8",
   "manifest_version": 2,
   "permissions": [
     "storage",
@@ -15,6 +15,8 @@
   "background": {
     "scripts": [
       "lib/chrome/chrome.js",
+      "lib/rrule.js",
+      "lib/moment.js",
       "lib/config.js",
       "lib/background.js"
     ]
@@ -35,7 +37,7 @@
         "https://calendar.google.com/calendar/*",
         "http://calendar.google.com/calendar/*"
       ],
-      "js": ["data/content_script/inject.js"]
+      "js": ["data/inject/inject.js"]
     }
   ],
   "homepage_url": "http://add0n.com/calendar.html",
@@ -43,5 +45,9 @@
     "16": "data/icons/16.png",
     "48": "data/icons/48.png",
     "128": "data/icons/128.png"
+  },
+  "options_ui": {
+    "page": "data/chrome/options/index.html",
+    "chrome_style": true
   }
 }

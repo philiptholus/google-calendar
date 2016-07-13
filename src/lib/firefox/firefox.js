@@ -12,6 +12,7 @@ var self = require('sdk/self'),
     XMLHttpRequest = require('sdk/net/xhr').XMLHttpRequest, // jshint ignore:line
     {ToggleButton} = require('sdk/ui/button/toggle'),
     {Cc, Cu, Ci} = require('chrome'),
+    {all, defer, race, resolve, reject} = require('sdk/core/promise'),
     config = require('../config');
 
 var {WebRequest} = Cu.import('resource://gre/modules/WebRequest.jsm', {});
@@ -19,7 +20,7 @@ var {MatchPattern} = Cu.import('resource://gre/modules/MatchPattern.jsm');
 
 var nsIObserverService = Cc['@mozilla.org/observer-service;1'].getService(Ci.nsIObserverService);
 
-var panel;
+var panel, callbacks = [];
 var button = new ToggleButton({
   id: 'igcalendar',
   label: 'Google™ Calendar',
@@ -30,6 +31,23 @@ var button = new ToggleButton({
   },
   onChange: function (state) {
     if (state.checked) {
+      // do not load panel until it is actually requested
+      if (!panel) {
+        panel = panels.Panel({
+          width: config.popup.width,
+          height: config.popup.height,
+          contentURL: self.data.url('./popup/index.html'),
+          contentScriptFile: [
+            self.data.url('./popup/firefox/firefox.js'),
+            self.data.url('./popup/index.js')
+          ],
+          contentStyleFile : self.data.url('./popup/index.css'),
+          contentScriptWhen: 'start',
+          onHide: () => button.state('window', {checked: false})
+        });
+        core.getActiveView(panel).setAttribute('tooltip', 'aHTMLTooltip');
+        callbacks.forEach(([id, callback]) => panel.port.on(id, callback));
+      }
       panel.show({
         position: button
       });
@@ -37,19 +55,8 @@ var button = new ToggleButton({
   }
 });
 
-panel = panels.Panel({
-  width: config.popup.width,
-  height: config.popup.height,
-  contentURL: self.data.url('./popup/index.html'),
-  contentScriptFile: [self.data.url('./popup/firefox/firefox.js'), self.data.url('./popup/index.js')],
-  contentScriptWhen: 'start',
-  onHide: () => button.state('window', {checked: false})
-});
-core.getActiveView(panel).setAttribute('tooltip', 'aHTMLTooltip');
-
 exports.popup = {
-  send: (id, data) => panel.port.emit(id, data),
-  receive: (id, callback) => panel.port.on(id, callback),
+  receive: (id, callback) => callbacks.push([id, callback]),
   hide: () => panel.hide()
 };
 
@@ -67,7 +74,7 @@ exports.browserAction = (function () {
 
 exports.storage = {
   local: {
-    set: (obj, callback) => {
+    set: (obj, callback = function () {}) => {
       Object.keys(obj).forEach(key => sp.prefs[key] = obj[key]);
       callback();
     },
@@ -79,8 +86,24 @@ exports.storage = {
       arr.forEach(str => tmp[str] = sp.prefs[str]);
       callback(tmp);
     }
+  },
+  onChanged: {
+    addListener: function (callback) {
+      sp.on('schedule.period', () => callback({'schedule.period': {newValue: sp.prefs['schedule.period']}}));
+      sp.on('badge.time', () => callback({'badge.time': {newValue: sp.prefs['badge.time']}}));
+    }
   }
 };
+
+exports.Promise = function (callback) {
+  let d = defer();
+  callback(d.resolve, d.reject);
+  return d.promise;
+};
+exports.Promise.defer = defer;
+exports.Promise.all = all;
+exports.Promise.race = race;
+exports.Promise.resolve = resolve;
 
 exports.tabs = {
   create: function (props) {
@@ -137,11 +160,11 @@ exports.startup = function (callback) {
             return;
           }
           if (
-            channel.URI.spec.indexOf('https://accounts.google.com/signin/challenge') === 0 ||
-            channel.URI.spec.indexOf('https://accounts.google.com/ServiceLogin') === 0 ||
-            channel.URI.spec.indexOf('https://calendar.google.com/') === 0 ||
-            channel.URI.spec.indexOf('https://www.google.com/calendar') === 0 ||
-            channel.URI.spec.indexOf('https://google.com/calendar') === 0
+            channel.URI.spec.startsWith('https://accounts.google.com/signin/challenge') ||
+            channel.URI.spec.startsWith('https://accounts.google.com/ServiceLogin') ||
+            channel.URI.spec.startsWith('https://calendar.google.com/') ||
+            channel.URI.spec.startsWith('https://www.google.com/calendar') ||
+            channel.URI.spec.startsWith('https://google.com/calendar')
           ) {
             if (channel.getResponseHeader('X-Frame-Options')) {
               channel.setResponseHeader('X-Frame-Options', '', false);
@@ -171,10 +194,10 @@ exports.startup = function (callback) {
             return;
           }
           if (
-            channel.URI.spec.indexOf('https://accounts.google.com/ServiceLogin') === 0 ||
-            channel.URI.spec.indexOf('https://calendar.google.com/') === 0 ||
-            channel.URI.spec.indexOf('https://www.google.com/calendar') === 0 ||
-            channel.URI.spec.indexOf('https://google.com/calendar') === 0
+            channel.URI.spec.startsWith('https://accounts.google.com/ServiceLogin') ||
+            channel.URI.spec.startsWith('https://calendar.google.com/') ||
+            channel.URI.spec.startsWith('https://www.google.com/calendar') ||
+            channel.URI.spec.startsWith('https://google.com/calendar')
           ) {
             let value = 'Mozilla/5.0 (iPhone; CPU iPhone OS 8_0_2 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12A405 Safari/600.1.4';
             channel.setRequestHeader('User-Agent', value, false);
@@ -193,12 +216,11 @@ exports.startup = function (callback) {
 // injecting script to the iframe of the panel
 (function () {
   let documentInsertedObserver = {
-    observe: function (document, topic) {
-      if (topic !== 'document-element-inserted' || !document.location) {
+    observe: function (window, topic) {
+      if (topic !== 'content-document-global-created') {
         return;
       }
-      let window = document.defaultView;
-      if (!window || !window.parent || window.parent.location.href !== self.data.url('./popup/index.html')) {
+      if (!window || !window.parent || window.parent.location.href.indexOf(self.data.url('./popup/index.html')) !== 0) {
         return;
       }
       if (window.top === window) {
@@ -206,12 +228,12 @@ exports.startup = function (callback) {
       }
       new Worker({
         window,
-        contentScriptFile: self.data.url('./content_script/inject.js'),
+        contentScriptFile: self.data.url('./inject/inject.js'),
       });
     }
   };
-  nsIObserverService.addObserver(documentInsertedObserver, 'document-element-inserted', false);
+  nsIObserverService.addObserver(documentInsertedObserver, 'content-document-global-created', false);
   unload.when(function () {
-    nsIObserverService.removeObserver(documentInsertedObserver, 'document-element-inserted');
+    nsIObserverService.removeObserver(documentInsertedObserver, 'content-document-global-created');
   });
 })();

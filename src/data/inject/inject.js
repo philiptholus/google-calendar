@@ -29,6 +29,13 @@ div[id="og_head"] {
 .ci-btn {
  cursor: pointer !important;
 }
+#signout {
+  display: none;
+}
+#email {
+  text-align: left;
+  text-indent: 5px;
+}
 `;
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -40,4 +47,9 @@ document.addEventListener('DOMContentLoaded', function () {
   style.setAttribute('type', 'text/css');
   style.textContent = css;
   document.body.appendChild(style);
+  // preventing panel from prompting alert or confirm
+  let script = document.createElement('script');
+  script.textContent = 'window.alert = window.confirm = function () {return true;}';
+  document.body.appendChild(script);
 }, false);
+

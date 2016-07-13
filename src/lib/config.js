@@ -1,6 +1,7 @@
 'use strict';
 
 var config = typeof exports !== 'undefined' ? exports : {};
+var app = app || require('./firefox/firefox');
 
 config.popup = {
   width: 400,
@@ -8,5 +9,9 @@ config.popup = {
 };
 
 config.badge = {
-  time: 5 // minutes
+  time: 30 // minutes
 };
+config.schedule = {
+  period: 24 // hours
+};
+config.debug = 0;

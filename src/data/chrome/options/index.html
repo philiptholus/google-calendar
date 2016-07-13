@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Options :: Notifier for Google™ Calendar</title>
+  <style>
+    body: {
+      padding: 10px;
+    }
+    input[type=number] {
+      width: 40px;
+    }
+    input[type=text] {
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <form id="form">
+    <div>Fetch new info from Google Calendar every (in minutes): <input id="badge.time" type="number" min="1"></div>
+    <div>Display the number of events for (in hours): <input id="schedule.period" type="number" min="1"></div>
+    <div>iCal URL: <input id="ics" type="text"></div>
+    <div id="status"></div>
+    <input type="submit" value="Save">
+  </form>
+
+  <script src="index.js"></script>
+</body>
+</html>
+

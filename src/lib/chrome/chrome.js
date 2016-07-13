@@ -1,15 +1,18 @@
 'use strict';
 
 var app = chrome;
+var moment = {};
+var rrule = {};
 
 app.window = window;
+app.Promise = window.Promise;
 
 app.startup = function (c) {
   c();
 };
 
 app.popup = {
-  send: (id, data) => chrome.extension.sendRequest({method: id, data: data}),
+  send: (method, data) => chrome.extension.sendRequest({method, data}),
   receive: (id, callback) => chrome.extension.onRequest.addListener(function (request, sender) {
     if (request.method === id && !sender.tab) {
       callback(request.data);

@@ -4,7 +4,7 @@
 window.addEventListener('load', function () {
   let iframe = document.querySelector('iframe');
   iframe.setAttribute('src', 'https://calendar.google.com/calendar');
-}, false);
+});
 
 window.addEventListener('click', function (e) {
   let target = e.target;
@@ -14,5 +14,9 @@ window.addEventListener('click', function (e) {
   }
   if (url && url !== 'refresh') {
     window.close();
+  }
+  if (url === 'refresh') {
+    let iframe = document.querySelector('iframe');
+    iframe.setAttribute('src', 'https://calendar.google.com/calendar');
   }
 }, false);

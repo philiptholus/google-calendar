@@ -4,11 +4,32 @@
   "description": "With Google™ Calendar keep track of life's important events all in one place.",
   "id": "jid1-f2rYCbFpq2J5Yo@jetpack",
   "license": "Mozilla Public License, version 2.0",
-  "version": "0.1.6",
+  "version": "0.1.8",
   "author": "Aurthur Polinsky",
   "main": "./lib/background.js",
   "url": "http://add0n.com/calendar.html",
   "permissions": {
-    "private-browsing": true
-  }
+    "private-browsing": true,
+    "multiprocess": true
+  },
+  "preferences": [
+    {
+      "type": "integer",
+      "name": "badge.time",
+      "value": 30,
+      "title": "Fetch new info from Google Calendar every (in minutes)"
+    },
+    {
+      "type": "integer",
+      "name": "schedule.period",
+      "value": 24,
+      "title": "Display the number of events for (in hours)"
+    },
+    {
+      "type": "string",
+      "name": "ics",
+      "value": "",
+      "title": "iCal URL"
+    }
+  ]
 }
