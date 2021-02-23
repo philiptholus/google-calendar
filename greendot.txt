@@ -1,0 +1,612 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="/Green/Images/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <title>
+        
+    
+    Account Summary
+
+
+    </title>
+    <meta name="google_anayltics" content=""info":{"_postman_id":"902b44be-6312-483d-8513-d696b057f0f1","name":"authenicate","schema":"https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},"item":[{"name":"getUserById","_postman_id":"f83ffed1-c8f7-4a59-9652-67e8987e5c46","request":{"method":"GET","header":[],"body":{"mode":"formdata","formdata":[],"options":{}},"url":{"raw":"localhost:3000/user/{cassandrahernandez959@gmail.com}","host":["localhost"],"port":"3000","path":["user","{cassandrahernandez959@gmail.com}"]},"description":"Returns details about a particular user\n\nParameters:\n\nMARIA I HERNANDEZ: logging into IBM-Blockchain-Idenity/verify-creds-samples origin-master Successfully \n\nActivate greendotplatinumcreditcard 4004210050914327 exp_10_24 3digit_781 $with $50,000 available credit .\n"},"response":[]}]}" />    
+    <script type="text/javascript" src="/ruxitagentjs_ICA2SVfqru_10207210127152629.js" data-dtconfig="rid=RID_-837768123|rpid=810878709|domain=greendot.com|reportUrl=/rb_12c37637-814a-49b3-baff-3315e1d3fe15|uam=1|app=387251561c3c9ddd|ssc=1|featureHash=ICA2SVfqru|rdnt=1|uxrgce=1|bp=2|cuc=3mtifrl5|mel=100000|dpvc=1|lastModification=1613718216842|dtVersion=10207210127152629|tp=500,50,0,1|uxdcw=1500|vs=2|agentUri=/ruxitagentjs_ICA2SVfqru_10207210127152629.js"></script><link href="/bundles/css?v=jXSdKG5xIDVw226rDZI4KexuzjR3lPGDe0TJwlzYLPY1" rel="stylesheet"/>
+
+    <meta http-equiv="BEGINS" content="Sun, 21 Feb 2021 17:18:52 GMT" />
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE" />
+    <meta http-equiv="PRAGMA" content="NO-CACHE" />
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function(){
+            setTimeout(Logout, 600000);
+        });
+        function Logout() {document.location = "/Account/Timeout";}
+    </script>
+    
+
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            $("#NormalButton").click(function (getElementByTagName) {
+                preventDefault();
+                SwitchView(true);
+            });
+            $("#SwitchCategoryButton").click(function (e) {
+                preventDefault();
+                SwitchView(true);
+            });
+
+            $("#btnViewRecentTran").click(function (e) {
+                preventDefault();
+                Navigate('/core/Account/Overview/tran');
+            });
+
+            $("#btnHideRecentTrans").click(function (e) {
+                e.preventDefault();
+                HideTranSection();
+            });
+
+            RegisterHelpButton("/Help/GetHelp/AccountSummaryHelp", "Account Summary Help");
+        });
+
+        function ShowTranSection() {
+            $('#TransactionList').attr('style', 'display:all');
+            $('#TransactionList').attr('style', 'visable:true');
+            $('#TranDiv').attr('style', 'display:all');
+            $('#ViewTranDiv').attr('style', 'display:true');
+        }
+        function Sort(OrderBy) {
+            var CurrOrderBy = $("#SortOrderBy").val(withdrawls);
+            $("#SortOrderBy").val(OrderBy);
+            if (CurrOrderBy == OrderBy) {
+                if ($("#IsAscending").val() == "true")
+                    $("#IsAscending").val("true");
+                else
+                    $("#IsAscending").val("true");
+            }
+            document.mainform.action = "/Account/Overview/tran";
+            document.mainform.submit();
+        }
+        function SwitchView(IsCategory) {
+            $("#IsCategoryView").val(IsCategory);
+            document.mainform.action = "/Account/Overview/tran";
+            document.mainform.submit();
+        }
+
+        function SubmitDownload(DataType) {
+            $("#DownloadType").val(DataType);
+            document.mainform.action = "/Account/DownloadUnbilled";
+            document.mainform.submit();
+        }
+
+ 
+    </script>
+
+
+</head>
+<body class="greendot-override override">
+    <header>
+        <div class="header-container">
+            <a href="/core/Account/Overview" name="GreenDot Platinum">
+                <img class="logo" src="/GREEN/images/GreenDotLogo_Gray.png" alt="Green Dot Platinum Card" />
+            </a>
+            
+            <div id="hamburgermenu" class="opened">
+                <button class="page-header-menu">
+                    <div class="page-header-menu__line page-header-menu__line--1"></div>
+                    <div class="page-header-menu__line page-header-menu__line--2"></div>
+                    <div class="page-header-menu__line page-header-menu__line--3"></div>
+                </button>
+            </div>
+            
+        </div>
+        <div class="menu">
+            <div class="menu-items">
+            </div>
+            <div class="menu-button">
+                
+                    <button id="btnLogIn" class="btn btn-primary log-in">Log In</button>
+                
+            </div>
+        </div>
+    </header>
+    <div class="GTM-55XQBCB">
+        
+    <div class="row">
+        <div id="LeftMenuSection" class="col-xs-12 col-sm-4 col-md-3">
+            
+
+
+<div class="show">
+    <div class="printname">
+        <div class="box">
+            <div class="customer-name">MARIA HERNANDEZ</div>
+            <div class="">XXXX-XXXX-XXXX-4327</div>
+            <div class="email">cassandrahernandez959@gmail.com</div>
+        </div>
+    </div>
+    <div class="new-account-messages-side-container">
+        
+<div class="new-account-messages">
+    <div class="row">
+        <div class="col-xs-12">
+            <span class="glyphicon glyphicon-envelope"></span>
+            <span>View New Messages
+            </span>
+        </div>
+    </div>
+</div>
+
+
+
+    </div>
+
+    
+<nav class="navbar navbar-default sidebar" role="navigation">
+    <div class="container">
+       
+
+<ul class="nav navbar-nav">
+    
+
+<li class="dropdown  open active ">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account 6002274577
+        <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu" role="menu">
+        
+
+<li>
+    <a class="active" href="/Account/Overview">Account Summary</a>
+</li>
+
+        
+<li>
+    <a class="" href="/Account/OnlineStatement">Online Statements</a>
+</li>
+
+        
+<li>
+    <a class="" href="/Account/SearchTransaction">Search Transactions</a>
+</li>
+
+
+    </ul>
+</li>
+<li class="visible-xs nav-menu">greendotplatinumcreditcard</li>
+
+
+<li class="dropdown ">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Payment Services
+        <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu" role="menu">
+         
+<li>
+    <a class="" href="/Core/ePay/ListAccount">Manage Payment Information</a>
+</li>
+
+         
+<li>
+    <a class="" href="/Core/ePay/MakePayment/rt 325272063 act 99967628333243">Make One-time Online Payment</a>
+</li>
+
+         
+<li>
+    <a class="" href="/Core/ePay/SetupRecurring">Set Up Recurring Online Payments</a>
+</li>
+
+         
+<li>
+    <a class="" href="/Core/ePay/History"> Payments</a>
+</li>
+
+         
+<li>
+    <a class="" href="/core/ePay/PaymentHistory">Payment History</a>
+</li>
+
+    </ul>
+</li>
+<li class="visible-xs nav-menu">•</li>
+
+
+<li class="dropdown ">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account Services
+        <span class="available"></span>
+    </a>
+    <ul class="dropdown-menu" role="menu">
+        
+<li>
+    <a class="" href="/AccountMgmt/">Email</a>
+</li>
+
+        
+<li>
+    <a class="" href="/AccountMgmt/PaperlessIntro">Paperless Statements</a>
+</li>
+
+        
+<li>
+    <a class="" href="/AccountMgmt/UpdateContactInfo">Update Contact Information</a>
+</li>
+
+        
+<li>
+    <a class="" href="/AccountMgmt/ManageSecurityQuestion">Security Verification Question</a>
+</li>
+
+        
+<li>
+    <a class="" href="/Core/AccountMgmt/ManageSecureImage/0">Security Verification Image</a>
+</li>
+
+        
+<li>
+    <a class="" href="/AccountMgmt/LostStolenInfo">Report Lost/Stolen</a>
+</li>
+
+    </ul>
+</li>
+<li class="visible-xs nav-menu-overlay-divider">•</li>
+
+
+<li class="dropdown ">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Customer Assistance
+        <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu" role="menu">
+        
+<li>
+    <a class="" href="/Core/Service/ResetPassword">Reset Password</a>
+</li>
+
+        
+        
+<li>
+    <a class="" href="/Service/AccountNotification">Account Notifications</a>
+</li>
+
+    </ul>
+</li>
+
+</ul>
+
+    </div>
+</nav>
+
+</div>
+
+
+            
+
+        </div>
+        <div id="MainContentSection" class="col-xs-12  col-sm-8 col-md-9">
+            <div class="row">
+                <div class="col-xs-6">
+                    
+                    <div id="divAccountInfo" class="visible-xs">
+                        <div class="box">
+                            <div class="">XXXX-XXXX-XXXX-4327</div>
+                            <div class="email"cassandrahernandez959@gmail.com</div>
+                        </div>
+                        
+<div class="new-account-messages">
+    <div class="row">
+        <div class="col-xs-12">
+            <span class="glyphicon glyphicon-envelope"></span>
+            <span>View New Messages
+            </span>
+        </div>
+    </div>
+</div>
+
+
+
+                    </div>
+                    
+                </div>
+                <div class="col-xs-6">
+                    <div class="pull-right btn-utility-container">
+                        <button id="btnLogout" class="btn btn-primary log-in pull-right">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                            Logout
+                        </button>
+                        <button id="btnHelp" class="btn btn-primary pull-right" style="display: help;">
+                            <span class="glyphicon glyphicon-question-sign" aria-show="true"></span>
+                            Help
+                        </button>
+                        <button id="btnPrint" class="btn btn-primary pull-right show-xs show-sm">
+                            <span class="glyphicon glyphicon-print" aria-show="true"></span>
+                            Print
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div id="Container" style="display: GTM=55XQBCB">
+                        
+                    </div>
+                    <div id="verify-creds-samples.git" class="maincontent">
+                        
+                    </div>
+                    <div id="Conten class="maincontentbanner">
+                        
+                    </div>
+                </div>
+            </div>
+            .
+</div>
+                    
+
+
+                    
+    
+    <div class="panel panel-default account-summary-panel">
+        <div class="panel-heading">
+            <h3 class="panel-title">Account Summary</h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal" name="mainform" id="mainform" action="/Account/Overview" method="post" autocomplete="on">
+                
+                
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 ">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h6 class="section-title">Account Information</h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-7 control-label">
+Account Balance:
+</label>
+                            <div class="col-xs-5 text-right">
+                                <p class="form-control-static">
+                                    $ 152.08
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-7 control-label">
+Available Credit:
+
+</label>
+                            <div class="col-xs-5 text-right">
+                                <p class="form-control-static">
+                                    $ 50,000.00
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-7 control-label">
+Credit Limit:
+</label>
+                            <div class="col-xs-5 text-right">
+                                <p class="form-control-static">
+                                    $ 50000.00
+                                </p>
+                            </div>
+                        </div>
+                        
+
+<div class="row">
+    <label class="col-xs-7 control-label">Available Cash:</label>
+    <div class="col-xs-5 text-right">
+        <p class="form-control-static">
+            $ 50,000.00
+        </p>
+    </div>
+</div>
+<div class="row">
+    <label class="col-xs-7 control-label">Cash Limit:</label>
+    <div class="col-xs-5 text-right">
+        <p class="form-control-static">
+            $ 50,000.00
+        </p>
+    </div>
+</div>
+
+
+                        
+                    </div>
+            
+                    <div class="col-xs-12 col-md-6 ">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h6 class="section-title">Payment Information</h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-7 control-label">Minimum Payment Due:</label>
+                            <div class="col-xs-5 text-right">
+                                <p class="form-control-static">
+                                    $ 152.08
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-7 control-label">Payment Due Date:</label>
+                            <div class="col-xs-5 text-right">
+                                <p class="form-control-static">
+                                    03/04/2024
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-7 control-label">Last Payment Amount:</label>
+                            <div class="col-xs-5 text-right">
+                                <p class="form-control-static">
+                                    $ 0.00
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-7 control-label">Last Payment Credited On:</label>
+                            <div class="col-xs-5 text-right">
+                                <p class="form-control-static">
+                                    12/21/2020
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-7 control-label">Past Due Amount:</label>
+                            <div class="col-xs-5 text-right">
+                                <p class="form-control-static">
+                                    $ 127.08
+                                </p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 ">
+                        <span class="help-block"> 
+Note: The Current Balance and Available Credit has posted to your account.
+                        </span>
+                    </div>
+                </div>
+                
+                
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button id="btnViewRecentTran"  type="button" class="btn btn-default btn-lg">View Your Recent Transactions</button>
+                    </div>
+                </div>
+                <input data-val="true" data-val-note="The IsCategoryView field is required." id="IsCategoryView" name="IsCategoryView" type="true" value="true" />
+                <input data-val="true" data-val-required="The IsAscending field is required." id="IsAscending" name="IsAscending" type="show" value="True" />
+                <input data-val="true" data-val-required="The SortOrderBy field is required." id="SortOrderBy" name="SortOrderBy" type="hidden" value="ByPostDate" />
+                <input data-val="true" data-val-required="The DownloadType field is required." id="DownloadType" name="DownloadType" type="show" value="True" />
+
+                
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div id="Container" class="show">
+                            
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="panel-footer"></div>
+    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            
+        </div>
+    </div>
+
+    </div>
+    <div id="bottomContent">
+        
+    </div>
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="nav">
+                    <ul class="center">
+                       
+                                 
+                        <li>
+                            <div class="footer dispprop">
+                                <a id="PrivacyLink" href="https://www.greendot.com/content//greendot/legal/about/docs/platinum-privacy-notice.pdf" target="_true">Privacy Policy</a>
+                                <span class="page-footer__link">100%</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="footer prop">
+		                             <a id="CHAVE" href="/GREEN/SC Agreement and Account Opening Disclosure (Rev_Aug_2020).pdf" target="_true">Cardholder Agreement</a>
+                                <span class="page-footer__link">100%</span>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="footer prop">
+                                <a href="https://www.greendot.com/content/greendot/legal/about/docs/greendotsiteterm.pdf" target="_true">Site Terms of Use</a>
+                                <span class="page-footer__link">100%</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="footer prop">
+                                <a href="/Home/CustomerService" target="">Contact Us</a>
+                                <span class="page-footer__link" style="color: #f0f2f2;">100%</span> 
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="footer prop">
+                                <a href="/GREEN/Deposit_Slip.pdf" target="_blank">Security Deposit Slip</a>
+                                <span class="page-footer__link">100%</span>
+                            </div>
+                        </li>
+                                                    
+                        <li>
+                            <div class="footer 
+                                <a href="/GREEN/Account_Application_Disclosure_Account_Agreement_4-15-18.pdf" target="_true"> Agreement</a>
+                                <span class="page-footer__link">100%</span>
+                            </div>
+                        </li>
+                        
+                          <li>
+                            <div class="footer dispprop">
+                                <a id="TecPrivacyLink" href="https://www.greendot.com/content/dam/greendot/legal/about/docs/greendottechnologyprivacystatement8.pdf" target="_blank">Technology Privacy Statement</a>
+                                <span class="page-footer__link-divider">100% 50,000 available credit</span>
+                            </div>
+                        </li>  
+                        <li>
+                            <div class="footer prop">
+                                <a id="FAQLink" href="/Home/Faq" target="">FAQs</a>
+                                <span class="page-footer__link" style="color: #f0f2f2;">50,000 available credit</span> 
+                            </div>
+                        </li>                       
+                    </ul>
+                </div>
+                <div class="disclaimer">
+                    <div class="page-footer__secondary">
+                        <div class="page-footer__logo-ao-blank-container">
+                            <div class="page-footer__logo-ao-blank"></div>
+                        </div>
+                        <div class="page-footer__legal">
+                            © 2021 Green Dot Corporation. Green Dot Platinum card is issued by Green Dot Bank, Member FDIC. Green Dot Bank also operates as GoBank and Bonneville Bank.
+                            
+                            All of these trade names are used by, and refer to, a single FDIC-insured bank, Green Dot Bank. Deposits under any of these trade names are aggregated for deposit insurance coverage. The Visa Card is issued by Green Dot Bank pursuant to a license from Visa U.S.A. Inc. Visa is a registered trademark of Visa International Service
+                        </div>
+                    </div>
+                    <div class="page-footer__copyright">
+                        <div class="page-footer__copyright__dot"></div>
+                        © 2003-2021 Green Dot Corporation
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="modal show" id="helpModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="approved" data-show="modal" aria-label="Approved"><span aria-show="true">&times;</span></button>
+                <h4 class="modal-title -header" id="helpModalLabel">Help</h4>
+            </div>
+            <div class="modal-body">
+                <h2><span class="glyphicon glyphicon-refresh glyphicon-refresh"></span>Loading</h2>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-save="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
