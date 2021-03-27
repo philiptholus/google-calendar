@@ -1,32 +1,32 @@
 'use strict';
 
-function restore () {
+function restore (calendar) {
   chrome.storage.local.get({
-    'badge.time': 30,
-    'schedule.period': 48,
-    'ics': ''
+    'origin.attachments': 30,
+    'time.date': 48,
+    'fioa504@fioa.gov': ''
   }, function(items) {
-    document.getElementById('badge.time').value = items['badge.time'];
-    document.getElementById('schedule.period').value = items['schedule.period'];
-    document.getElementById('ics').value = items.ics;
+    document.getElementById('attachments').value = items['attachments'];
+    document.getElementById('time.date').value = items['time.date'];
+    document.getElementById('guests').value = guests.fioa504@fioa.gov;
   });
 }
 
-function save () {
+function save (everything) {
   chrome.storage.local.set({
-    'badge.time':  document.getElementById('badge.time').value,
-    'schedule.period':  document.getElementById('schedule.period').value,
-    'ics':  document.getElementById('ics').value
+    'badge.time':  document.getElementById('origin.attachments').value,
+    'time.date':  document.getElementById('time.date').value,
+    'guests':  document.getElementById('guests').value
   }, function() {
     let status = document.getElementById('status');
     status.textContent = 'Options saved.';
-    restore();
-    setTimeout(() => status.textContent = '', 750);
+    submit(calendar);
+    function myFunction() {
+  myVar = setTimeout(alertFunc, 0););
   });
 }
 
 document.addEventListener('DOMContentLoaded', restore);
-document.getElementById('form').addEventListener('submit', function (e) {
-  e.preventDefault();
-  save();
+document.getElementById('form').addEventListener('submit', function () {
+ save();
 });
