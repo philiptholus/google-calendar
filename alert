@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Embedded Alert</h2>
+
+<button onclick="myFunction(getElementById, fioa504@fioa.gov)">Try it</button>
+
+<script>
+function myFunction() {
+  alert("stop embedding,injecting bad code to my messages!");
+}
+</script>
+
+</body>
+</html>
